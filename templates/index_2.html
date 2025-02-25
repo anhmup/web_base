@@ -46,13 +46,6 @@
         </form>
     </div>
     {% endif %}
-
-    {% if processed_image_path %}
-    <div class="image-container">
-        <h2>Processed Image</h2>
-        <img src="{{ url_for('static', filename='results/' + processed_image_path) }}" alt="Processed Image" width="300">
-    </div>
-    {% endif %}
 </body>
 </html>
 

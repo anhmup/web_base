@@ -30,7 +30,8 @@ def draw_rectangles():
     original_image_path = request.form["original_image_path"]
     input_path = os.path.join(UPLOAD_FOLDER, original_image_path)
     output_path = os.path.join(RESULT_FOLDER, "processed_" + original_image_path)
-
+    if not os.path.exists(input_path):
+        return "No uploaded image found!"
     image = cv2.imread(input_path)
     height, width, _ = image.shape
 
@@ -43,7 +44,12 @@ def draw_rectangles():
 
     cv2.imwrite(output_path, image)
     
-    return render_template("index_2.html", filename=original_image_path, processed_image_path="processed_" + original_image_path)
+    return render_template("result.html",  original_image_path=input_path, drawn_image_path=output_path)
+    # return redirect(url_for("result_page"))
+# @app.route("/result")
+# def result_page():
+#     return render_template("result.html" , original_image_path=input_path, drawn_image_path=output_path)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
