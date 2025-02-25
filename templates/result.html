@@ -28,16 +28,24 @@
             cursor: pointer;
             margin-top: 10px;
         }
+        .image-box img {
+            max-width: 100%;  /* Ảnh không vượt quá chiều rộng của box */
+            max-height: 500px; /* Giới hạn chiều cao để không quá lớn */
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Giữ nguyên tỷ lệ */
+            border: 2px solid black;
+        }
     </style>
 </head>
 <body>
     <h1>Draw Result</h1>
     <div class="container">
-        <div class="image-container">
+        <div class="image-box">
             <h2>Image with Rectangles</h2>
             <img src="{{ drawn_image_path }}" alt="Image with Rectangles">
         </div>
-        <div class="image-container">
+        <div class="image-box">
             <h2>Original Image</h2>
             <img src="{{ original_image_path }}" alt="Original Image">
         </div>
