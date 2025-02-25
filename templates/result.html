@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Result</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .image-container {
+            width: 45%;
+        }
+        .image-container img {
+            width: 100%;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Draw Result</h1>
+    <div class="container">
+        <div class="image-container">
+            <h2>Image with Rectangles</h2>
+            <img src="{{ drawn_image_path }}" alt="Image with Rectangles">
+        </div>
+        <div class="image-container">
+            <h2>Original Image</h2>
+            <img src="{{ original_image_path }}" alt="Original Image">
+        </div>
+    </div>
+    <div class="button-container">
+        <form action="/" method="get">
+            <button type="submit">Exit</button>
+        </form>
+    </div>
+</body>
+</html>
+

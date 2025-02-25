@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Draw Rectangles</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        .button { background-color: #4169E1; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 10px; }
+        img { margin-top: 20px; border: 2px solid black; }
+    </style>
+
+    <script>
+        function uploadAndShowImage() {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.click();
+            fileInput.onchange = function() {
+                if (fileInput.files.length > 0) {
+                    document.getElementById('uploadForm').submit();
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+    <h1>Table Detection & Structure Recognition NGUYEN QUOC ANH</h1>
+    <p>Upload an image containing a table to detect its structure.</p>
+
+    <div class="upload-box">
+        <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept="image/*" required style="display: none;">
+            <button type="button" class="button" onclick="uploadAndShowImage();">Upload and Display Image</button>
+        </form>
+    </div>
+
+    {% if filename %}
+    <div class="image-container">
+        <h2>Original Image</h2>
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" width="300">
+
+        <form action="/draw" method="post">
+            <input type="hidden" name="original_image_path" value="{{ filename }}">
+            <button type="submit" class="button">Draw</button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if processed_image_path %}
+    <div class="image-container">
+        <h2>Processed Image</h2>
+        <img src="{{ url_for('static', filename='results/' + processed_image_path) }}" alt="Processed Image" width="300">
+    </div>
+    {% endif %}
+</body>
+</html>
+
